@@ -9,6 +9,7 @@ import {HelloWorldComponent} from './hello-world/hello-world.component';
 import {RankedGroupManagementComponent} from './ranked-group-management/ranked-group-management.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {RankedItemManagementComponent} from './ranked-item-management/ranked-item-management.component';
+import {RankedGroupService} from "./services/ranked-group.service";
 
 const appRoutes: Routes = [
     {path: 'manage-ranked-group/:id', component: RankedGroupManagementComponent},
@@ -33,7 +34,7 @@ const appRoutes: Routes = [
             {enableTracing: true} // <-- debugging purposes only
         )
     ],
-    providers: [HelloWorldService],
+    providers: [HelloWorldService, RankedGroupService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
