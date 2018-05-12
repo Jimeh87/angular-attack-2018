@@ -1,4 +1,4 @@
-package io.angularattack.loweredexpectations.chili.api;
+package io.angularattack.loweredexpectations.rankit.api;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

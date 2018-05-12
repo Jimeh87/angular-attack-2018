@@ -9,6 +9,6 @@
 
 ## Starting Servers
 * Run "yarn start" from the root of the project to start the angular server.
-* Run the ChiliApplication in your chosen IDE to run the Backend.
+* Run the RankItApplication in your chosen IDE to run the Backend.
 
 Now you can help with the project!  Yay!

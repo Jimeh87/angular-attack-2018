@@ -1,12 +1,12 @@
-package io.angularattack.loweredexpectations.chili;
+package io.angularattack.loweredexpectations.rankit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ChiliApplication {
+public class RankItApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ChiliApplication.class, args);
+		SpringApplication.run(RankItApplication.class, args);
 	}
 }

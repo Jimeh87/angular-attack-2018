@@ -1,6 +1,6 @@
-package io.angularattack.loweredexpectations.chili.services;
+package io.angularattack.loweredexpectations.rankit.services;
 
-import io.angularattack.loweredexpectations.chili.api.HelloDto;
+import io.angularattack.loweredexpectations.rankit.api.HelloDto;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,8 +1,8 @@
-package io.angularattack.loweredexpectations.chili.controllers;
+package io.angularattack.loweredexpectations.rankit.controllers;
 
 
-import io.angularattack.loweredexpectations.chili.api.HelloDto;
-import io.angularattack.loweredexpectations.chili.services.HelloWorldService;
+import io.angularattack.loweredexpectations.rankit.api.HelloDto;
+import io.angularattack.loweredexpectations.rankit.services.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
