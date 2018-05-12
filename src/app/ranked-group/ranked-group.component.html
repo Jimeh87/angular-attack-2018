@@ -1,0 +1,33 @@
+<section class="hero is-dark">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Ranked Groups
+            </h1>
+        </div>
+    </div>
+</section>
+
+<div>
+    <div>
+        <div *ngFor="let group of rankedGroups">
+            <div class="field">
+                <label class="label">Group Name</label>
+                <div>
+                    {{group.name}}
+                </div>
+            </div>
+            <div *ngFor="let item of group.rankedItems">
+                <div class="field">
+                    <label class="label">item</label>
+                    <div>
+                        {{item.name}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="button is-info is-pulled-right" (click)="addGroup()">Add Group</button>
+</div>
+
+

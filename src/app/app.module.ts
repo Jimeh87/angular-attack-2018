@@ -8,15 +8,15 @@ import {HttpClientModule} from "@angular/common/http";
 import {HelloWorldComponent} from './hello-world/hello-world.component';
 import {RankedGroupManagementComponent} from './ranked-group-management/ranked-group-management.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {RankedItemManagementComponent} from './ranked-item-management/ranked-item-management.component';
 import {RankedGroupService} from "./services/ranked-group.service";
 import {ReactiveFormsModule} from "@angular/forms";
+import { RankedGroupComponent } from './ranked-group/ranked-group.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatCardModule} from "@angular/material";
 
 const appRoutes: Routes = [
-    {path: 'manage-ranked-group/:id', component: RankedGroupManagementComponent},
-    {path: 'manage-ranked-item/:id', component: RankedItemManagementComponent},
+    {path: 'ranked-group', component: RankedGroupComponent},
+    {path: 'manage-ranked-group', component: RankedGroupManagementComponent},
     {path: '', component: HelloWorldComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
@@ -27,7 +27,7 @@ const appRoutes: Routes = [
         HelloWorldComponent,
         RankedGroupManagementComponent,
         PageNotFoundComponent,
-        RankedItemManagementComponent
+        RankedGroupComponent
     ],
     imports: [
         BrowserModule,

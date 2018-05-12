@@ -16,16 +16,17 @@
     <div class="field">
         <label class="label">Group Name</label>
         <div class="control">
-            <input class="input" type="text" formControlName="groupName"/>
+            <input class="input" type="text" formControlName="name"/>
         </div>
     </div>
 
-    <div >
-        <div formArrayName="items" class="notification" *ngFor="let item of formGroup.get('items').controls; let i = index">
+    <div>
+        <div formArrayName="rankedItems" class="notification"
+             *ngFor="let item of formGroup.get('rankedItems').controls; let i = index">
             <div class="field-body" [formGroupName]="i">
                 <div class="field">
                     <label class="label">item</label>
-                    <input class="input" type="text" formControlName="itemName"/>
+                    <input class="input" type="text" formControlName="name"/>
                 </div>
             </div>
             <button class="delete" (click)="removeItem(i)">
@@ -37,6 +38,6 @@
             <span>Add Item</span>
         </button>
     </div>
-    <button class="button is-info is-pulled-right" (click)="submitForm()">Save Group </button>
+    <button class="button is-info is-pulled-right" (click)="saveGroup()">Save Group</button>
 
 </div>
