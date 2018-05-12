@@ -6,6 +6,7 @@
 * Install Angular CLI
 * Install Yarn
 * Import Project into IntelliJ/Eclipse
+* Run "yarn" from the root of the project to download all dependencies
 
 ## Starting Servers
 * Run "yarn start" from the root of the project to start the angular server.
