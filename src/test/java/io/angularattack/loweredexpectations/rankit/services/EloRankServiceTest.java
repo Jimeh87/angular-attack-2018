@@ -48,7 +48,7 @@ public class EloRankServiceTest {
                 itemB.getScore(),
                 MatchResultEnum.DRAW);
 
-        assertEquals(new Integer(2371), outcome.getScoreA());
-        assertEquals(new Integer(2387), outcome.getScoreB());
+        assertEquals(new Integer(2387), outcome.getScoreA());
+        assertEquals(new Integer(2013), outcome.getScoreB());
     }
 }
