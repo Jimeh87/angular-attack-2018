@@ -11,6 +11,8 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {RankedItemManagementComponent} from './ranked-item-management/ranked-item-management.component';
 import {RankedGroupService} from "./services/ranked-group.service";
 import {ReactiveFormsModule} from "@angular/forms";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatCardModule} from "@angular/material";
 
 const appRoutes: Routes = [
     {path: 'manage-ranked-group/:id', component: RankedGroupManagementComponent},
@@ -34,7 +36,9 @@ const appRoutes: Routes = [
         RouterModule.forRoot(
             appRoutes,
             {enableTracing: true} // <-- debugging purposes only
-        )
+        ),
+        BrowserAnimationsModule,
+        MatCardModule
     ],
     providers: [HelloWorldService, RankedGroupService],
     bootstrap: [AppComponent]
