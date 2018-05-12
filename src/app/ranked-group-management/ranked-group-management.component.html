@@ -1,3 +1,42 @@
-<p>
-  ranked-group-management works!
-</p>
+<section class="hero is-dark">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Ranked Group Management
+            </h1>
+            <h2 class="subtitle">
+                Add Group
+            </h2>
+        </div>
+    </div>
+</section>
+
+<div class="container" [formGroup]="formGroup">
+
+    <div class="field">
+        <label class="label">Group Name</label>
+        <div class="control">
+            <input class="input" type="text" formControlName="groupName"/>
+        </div>
+    </div>
+
+    <div >
+        <div formArrayName="items" class="notification" *ngFor="let item of formGroup.get('items').controls; let i = index">
+            <div class="field-body" [formGroupName]="i">
+                <div class="field">
+                    <label class="label">item</label>
+                    <input class="input" type="text" formControlName="itemName"/>
+                </div>
+            </div>
+            <button class="delete" (click)="removeItem(i)">
+                <span>Delete Item</span>
+            </button>
+        </div>
+        <button class="button is-dark" (click)="addItem()">
+            <i class="fas fa-plus-circle"></i>&nbsp;
+            <span>Add Item</span>
+        </button>
+    </div>
+    <button class="button is-info is-pulled-right" (click)="submitForm()">Save Group </button>
+
+</div>

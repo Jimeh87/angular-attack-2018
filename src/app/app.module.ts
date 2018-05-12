@@ -9,6 +9,7 @@ import {HelloWorldComponent} from './hello-world/hello-world.component';
 import {RankedGroupManagementComponent} from './ranked-group-management/ranked-group-management.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {RankedItemManagementComponent} from './ranked-item-management/ranked-item-management.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 const appRoutes: Routes = [
     {path: 'manage-ranked-group/:id', component: RankedGroupManagementComponent},
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
     imports: [
         BrowserModule,
         HttpClientModule,
+        ReactiveFormsModule,
         RouterModule.forRoot(
             appRoutes,
             {enableTracing: true} // <-- debugging purposes only
