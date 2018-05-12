@@ -11,6 +11,6 @@ export class HelloWorldService {
     }
 
     public helloWorld(): Observable<Hello> {
-        return this.httpClient.get<Hello>("/api/v1/helloWorld");
+        return this.httpClient.get<Hello>("/api/v1/hello-world");
     }
 }
