@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 import {RankedGroupService} from "../services/ranked-group.service";
 import {RankedGroup} from "../models/ranked-group.model";
 import {Router} from "@angular/router";
@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 })
 export class RankedGroupManagementComponent implements OnInit {
 
+    submitted = false;
     formGroup: FormGroup
     rankedGroup: RankedGroup = null
 
@@ -23,24 +24,31 @@ export class RankedGroupManagementComponent implements OnInit {
 
     createForm(): void {
         this.formGroup = this.fb.group({
-            name: '',
+            name: ['', Validators.required],
             rankedItems: this.fb.array([this.createItemForm()])
         });
     }
 
     private createItemForm() {
         return this.fb.group({
-            name: ''
+            name: ['', Validators.required]
         });
     }
 
     saveGroup() {
+        this.submitted = true;
+        if (this.formGroup.invalid) {
+            return;
+        }
         this.rankedGroup = this.formGroup.value as RankedGroup;
-        this.rgservice.save(this.rankedGroup).subscribe(value => {
-            console.log("Saved group successful: " + JSON.stringify(this.rankedGroup));
-            this.router.navigate(['/ranked-group'])
+        this.rgservice.save(this.rankedGroup).subscribe(() => {
+            this.router.navigate(['/'])
         });
 
+    }
+
+    showValidation(control: AbstractControl, error: string) {
+        return control.hasError(error) && (this.submitted || control.touched);
     }
 
     addItem() {

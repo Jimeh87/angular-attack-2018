@@ -6,11 +6,17 @@
         <div [formGroup]="formGroup">
             <mat-form-field>
                 <input matInput type="text" placeholder="Ranking List Name" formControlName="name">
+                <mat-error *ngIf="showValidation(formGroup.get('name'), 'required')">
+                    Field is required
+                </mat-error>
             </mat-form-field>
             <div formArrayName="rankedItems" *ngFor="let item of getRankedItems().controls; let i = index">
                 <div [formGroupName]="i">
                     <mat-form-field>
                         <input matInput type="text" placeholder="Item Name" formControlName="name">
+                        <mat-error *ngIf="showValidation(item.get('name'), 'required')">
+                            Field is required
+                        </mat-error>
                     </mat-form-field>
                     <button mat-button color="warn" (click)="removeItem(i)">Delete Item</button>
                 </div>
@@ -19,7 +25,12 @@
             <br/>
             <br/>
             <button mat-raised-button color="primary" (click)="saveGroup()">Save Group</button>
-
+            <br/>
+            <div *ngIf="formGroup.invalid && submitted">
+                <mat-error>
+                    Please fill in all fields.
+                </mat-error>
+            </div>
         </div>
     </mat-card-content>
 </mat-card>
