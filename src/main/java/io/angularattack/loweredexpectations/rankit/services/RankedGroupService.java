@@ -9,6 +9,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -25,6 +26,7 @@ public class RankedGroupService {
     public List<RankedGroupDto> findAll() {
         return rankedGroupRepository.findAll()
                 .stream()
+                .sorted(Comparator.comparing(RankedGroup::getCreatedDate, Comparator.reverseOrder()))
                 .map(this::toRankedGroupDto)
                 .collect(Collectors.toList());
     }
@@ -52,10 +54,14 @@ public class RankedGroupService {
 
     private RankedGroup applyDefaults(RankedGroup rankedGroup) {
         rankedGroup
-                .setShortCode(RandomStringUtils.random(8, "0123456789abcdefg"));
+                .setShortCode(generateShortCode());
         rankedGroup.getRankedItems()
                 .forEach(i -> i.setScore(START_SCORE));
         return rankedGroup;
+    }
+
+    public static String generateShortCode() {
+        return RandomStringUtils.random(8, "0123456789abcdefg");
     }
 
     public RankedGroupDto update(RankedGroupDto rankedGroupDto) {
