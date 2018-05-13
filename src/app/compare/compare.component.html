@@ -1,24 +1,26 @@
-<div class="row">
-    <div class="col-12">
-        <h1 style="text-align: center">Pick your favorite</h1>
+<ng-container *ngIf="match">
+    <div class="row">
+        <div class="col-12">
+            <h1 style="text-align: center">{{ groupName }}</h1>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-12 col-md-6">
-        <mat-card class="compare-item">
-            <mat-card-title>Option 1</mat-card-title>
-        </mat-card>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <mat-card class="compare-item">
+                <mat-card-title>{{ match.itemA.name }}</mat-card-title>
+            </mat-card>
+        </div>
+        <div class="col-12 col-md-6">
+            <mat-card class="compare-item">
+                <mat-card-title>{{ match.itemB.name }}</mat-card-title>
+            </mat-card>
+        </div>
     </div>
-    <div class="col-12 col-md-6">
-        <mat-card class="compare-item">
-            <mat-card-title>Option 2</mat-card-title>
-        </mat-card>
+    <div class="row">
+        <div class="col-12">
+            <mat-card class="compare-item">
+                <mat-card-title>I can't decide</mat-card-title>
+            </mat-card>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-12">
-        <mat-card class="compare-item">
-            <mat-card-title>I can't decide</mat-card-title>
-        </mat-card>
-    </div>
-</div>
+</ng-container>

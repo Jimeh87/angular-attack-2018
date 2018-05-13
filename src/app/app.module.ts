@@ -20,7 +20,7 @@ import {MatDividerModule} from '@angular/material/divider';
 
 const appRoutes: Routes = [
     {path: 'manage-ranked-group/:id', component: RankedGroupManagementComponent},
-    {path: 'compare/:id', component: CompareComponent},
+    {path: 'compare/:rankedGroupId', component: CompareComponent},
     {path: 'ranked-group', component: RankedGroupComponent},
     {path: 'manage-ranked-group', component: RankedGroupManagementComponent},
     {path: '', component: HelloWorldComponent},
