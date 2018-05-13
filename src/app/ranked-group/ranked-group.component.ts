@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RankedGroupService} from "../services/ranked-group.service";
 import {RankedGroup} from "../models/ranked-group.model";
-import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-ranked-group',
@@ -11,19 +10,21 @@ import {Router} from "@angular/router";
 export class RankedGroupComponent implements OnInit {
 
     rankedGroups: Array<RankedGroup> = [];
-    displayedColumns = ['rank', 'name', 'image'];
+    displayedColumns = ['rank', 'name', 'score'];
 
-    constructor(private rgService: RankedGroupService, private router: Router) {
+    constructor(private rgService: RankedGroupService) {
     }
 
     ngOnInit() {
-        this.rgService.findAll().subscribe(value => {
-            this.rankedGroups = value;
+        this.rgService.findAll().subscribe((rankedGroups: RankedGroup[]) => {
+            rankedGroups.forEach(g => g.rankedItems = g.rankedItems.sort((a, b) => b.score - a.score));
+            this.rankedGroups = rankedGroups;
             console.log("Saved group successful: " + JSON.stringify(this.rankedGroups));
         });
     }
 
-    addGroup() {
-        this.router.navigate(['/manage-ranked-group']);
+    toUrl(shortId: string) {
+        return '/r/' + shortId;
     }
+
 }

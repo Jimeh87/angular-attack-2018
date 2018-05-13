@@ -30,6 +30,9 @@ public class RankedItem {
     @Column(name = "IMAGE")
     private String image;
 
+    @Column(name= "SCORE")
+    private Integer score;
+
     @PrePersist
     public void prePersist() {
         id = UUID.randomUUID();

@@ -1,5 +1,5 @@
-import { Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RankedGroupService} from "../services/ranked-group.service";
 import {RankedGroup} from "../models/ranked-group.model";
 import {Router} from "@angular/router";
@@ -17,6 +17,7 @@ import {Subscription} from "rxjs/internal/Subscription";
 })
 export class RankedGroupManagementComponent implements OnInit {
 
+    submitted = false;
     formGroup: FormGroup;
     rankedItems: RankedItem[] = [];
     images: File[] = []
@@ -35,10 +36,9 @@ export class RankedGroupManagementComponent implements OnInit {
         this.createForm();
     }
 
-
     createForm(): void {
         this.formGroup = this.fb.group({
-            name: '',
+            name: ['', Validators.required],
             rankedItems: this.fb.array([this.createItemForm()])
         });
     }
@@ -46,12 +46,17 @@ export class RankedGroupManagementComponent implements OnInit {
     private createItemForm() {
         this.images.push(null);
         return this.fb.group({
-            name: '',
+            name: ['', Validators.required],
             image: File = null
         });
     }
 
     saveGroup() {
+        this.submitted = true;
+        if (this.formGroup.invalid) {
+            return;
+        }
+
         const observables: Observable<any>[] = [];
         this.images.forEach((value: File) => {
             observables.push(this.uploadImage(value));
@@ -64,22 +69,27 @@ export class RankedGroupManagementComponent implements OnInit {
             const rankedGroup: RankedGroup = {
                 id: null,
                 name: this.formGroup.get("name").value,
-                rankedItems: value.map( (httpResponse: any, index: number) => {
+                shortCode: null,
+                rankedItems: value.map((httpResponse: any, index: number) => {
                     const itemName = (this.formGroup.get("rankedItems") as FormArray).controls[index].get("name").value;
                     const publicId: string = httpResponse.public_id;
                     const rankedItem: RankedItem = {
                         id: null,
                         name: itemName,
-                        image: publicId
+                        image: publicId,
+                        score: null
                     };
                     return rankedItem;
-                }),
+                })
             };
             this.rgservice.save(rankedGroup).subscribe(() => {
-                this.router.navigate(['/'])
+                this.router.navigate(['/']);
             });
-
         });
+    }
+
+    showValidation(control: AbstractControl, error: string) {
+        return control.hasError(error) && (this.submitted || control.touched);
     }
 
     uploadImage(fileItem: File): Observable<any> {
@@ -105,6 +115,10 @@ export class RankedGroupManagementComponent implements OnInit {
         const items = this.formGroup.get('rankedItems') as FormArray;
         items.removeAt(index);
         this.images.splice(index, 1);
+    }
+
+    getRankedItems(): FormArray {
+        return (this.formGroup.get('rankedItems') as FormArray);
     }
 
     onFileChange(event, index: number) {

@@ -1,0 +1,25 @@
+<div class="row" style="padding-bottom: 1rem;">
+    <div class="col">
+        <mat-card>
+            <mat-card-title>
+                Welcome to Rank It!
+            </mat-card-title>
+            <mat-card-content>
+                <p>We are here to help you create and rank a list of anything from favorite music to judging a chili competition.</p>
+                <p>What makes us better at it than everyone else, is we don't rely on inconsistent star rating systems, or point systems.
+                    We simply the process and force the evaluator to pick their favorite of two options in the list.
+                    Based on the comparisons we score each entry in the list.</p>
+                <button mat-raised-button color="primary" routerLink="/manage-ranked-group">
+                    <mat-icon>add_box</mat-icon>
+                    <span>Create a new ranking group</span>
+                </button>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <app-ranked-group></app-ranked-group>
+    </div>
+</div>
+

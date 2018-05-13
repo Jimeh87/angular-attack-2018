@@ -14,16 +14,27 @@ import {RankedGroupService} from "./services/ranked-group.service";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RankedGroupComponent} from './ranked-group/ranked-group.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatCardModule} from "@angular/material";
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatTableModule} from '@angular/material/table';
-import {MatDividerModule} from '@angular/material/divider';
+import {
+    MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatTableModule,
+    MatToolbarModule
+} from "@angular/material";
+import {CompareComponent} from './compare/compare.component';
+import {HomeComponent} from './home/home.component';
+import { EasyUrlComponent } from './easy-url/easy-url.component';
 
 const appRoutes: Routes = [
+    {path: 'r/:shortId', component: EasyUrlComponent},
+    {path: 'manage-ranked-group/:id', component: RankedGroupManagementComponent},
+    {path: 'compare/:rankedGroupId', component: CompareComponent},
     {path: 'ranked-group', component: RankedGroupComponent},
     {path: 'manage-ranked-group', component: RankedGroupManagementComponent},
-    {path: '', component: HelloWorldComponent},
+    {path: '', component: HomeComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
 
@@ -41,7 +52,10 @@ const cloudinaryLib = {
         HelloWorldComponent,
         RankedGroupManagementComponent,
         PageNotFoundComponent,
-        RankedGroupComponent
+        CompareComponent,
+        RankedGroupComponent,
+        HomeComponent,
+        EasyUrlComponent
     ],
     imports: [
         BrowserModule,
@@ -51,10 +65,14 @@ const cloudinaryLib = {
         CloudinaryModule.forRoot(cloudinaryLib, cloudConfig as CloudinaryConfiguration),
         BrowserAnimationsModule,
         MatCardModule,
+        MatGridListModule,
+        MatCardModule,
         MatInputModule,
         MatButtonModule,
         MatTableModule,
-        MatDividerModule
+        MatDividerModule,
+        MatToolbarModule,
+        MatIconModule
     ],
     providers: [HelloWorldService, RankedGroupService],
     bootstrap: [AppComponent]

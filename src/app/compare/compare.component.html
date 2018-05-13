@@ -1,0 +1,38 @@
+<div *ngIf="groupName">
+    <div class="row">
+        <div class="col-12">
+            <h1 style="text-align: center">
+                {{ groupName }}
+            </h1>
+        </div>
+    </div>
+</div>
+<div *ngIf="match" @flyInOut>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <mat-card class="compare-item" (click)="matchAWon()">
+                <mat-card-title>{{ match.itemA.name }}</mat-card-title>
+            </mat-card>
+        </div>
+        <div class="col-12 col-md-6">
+            <mat-card class="compare-item" (click)="matchBWon()">
+                <mat-card-title>{{ match.itemB.name }}</mat-card-title>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <mat-card class="compare-item" (click)="noDecision()">
+                <mat-card-title>I can't decide</mat-card-title>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12" style="margin: 1rem;">
+            <button mat-raised-button color="primary" [routerLink]="'/'">
+                <mat-icon>check</mat-icon>
+                <span>I'm all finished ranking!</span>
+            </button>
+        </div>
+    </div>
+</div>

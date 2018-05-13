@@ -1,5 +1,6 @@
 export interface RankedItem {
     id: string,
     name: string,
-    image: string
+    image: string,
+    score: number
 }
