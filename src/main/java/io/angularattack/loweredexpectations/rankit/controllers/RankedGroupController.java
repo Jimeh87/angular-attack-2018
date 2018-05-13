@@ -34,15 +34,15 @@ public class RankedGroupController {
     public List<RankedGroupDto> findAll() {
         return rankedGroupService.findAll();
     }
-    
+
 	@GetMapping(value = "/{id}/qr", produces = MediaType.IMAGE_PNG_VALUE)
 	public byte[] getQRCode(@PathVariable UUID id) throws WriterException, IOException {
 		RankedGroupDto group = get(id);
 		if(group == null) {
 			//TODO return null....really???  prolly http code
-			return null;	
+			return null;
 		}
-		ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		BitMatrix matrix = new MultiFormatWriter().encode(GROUP_URL + group.getShortCode(), BarcodeFormat.QR_CODE, 400, 400);
 		MatrixToImageWriter.writeToStream(matrix, MediaType.IMAGE_PNG.getSubtype(), baos, new MatrixToImageConfig());
 		return baos.toByteArray();
@@ -60,9 +60,6 @@ public class RankedGroupController {
 
     @PostMapping
     public RankedGroupDto create(@RequestBody RankedGroupDto rankedGroupDto) {
-    	//TODO disallow create if they're specifying short code??
-    	//TODO handle collision of randomized shortened id
-    	rankedGroupDto.setShortCode(RandomStringUtils.random(8, "0123456789abcdefg") );
         return rankedGroupService.create(rankedGroupDto);
     }
 

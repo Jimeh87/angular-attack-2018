@@ -5,6 +5,7 @@ import io.angularattack.loweredexpectations.rankit.api.RankedItemDto;
 import io.angularattack.loweredexpectations.rankit.entities.RankedGroup;
 import io.angularattack.loweredexpectations.rankit.entities.RankedItem;
 import io.angularattack.loweredexpectations.rankit.repositories.RankedGroupRepository;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,8 @@ import java.util.stream.Collectors;
 @Service
 public class RankedGroupService {
 
+    public static final Integer START_SCORE = 1500;
+
     @Autowired
     private RankedGroupRepository rankedGroupRepository;
 
@@ -25,7 +28,7 @@ public class RankedGroupService {
                 .map(this::toRankedGroupDto)
                 .collect(Collectors.toList());
     }
-    
+
     public RankedGroupDto getByShortCode(String shortCode) {
         return Optional.of(rankedGroupRepository.findByShortCode(shortCode))
                 .map(this::toRankedGroupDto)
@@ -41,9 +44,17 @@ public class RankedGroupService {
     public RankedGroupDto create(RankedGroupDto rankedGroupDto) {
         return Optional.of(rankedGroupDto)
                 .map(this::toRankedGroup)
+                .map(this::applyDefaults)
                 .map(rankedGroupRepository::save)
                 .map(this::toRankedGroupDto)
                 .get();
+    }
+
+    private RankedGroup applyDefaults(RankedGroup rankedGroup) {
+        rankedGroup
+                .setShortCode(RandomStringUtils.random(8, "0123456789abcdefg"));
+        rankedGroup.getRankedItems()
+                .forEach(i -> i.setScore(START_SCORE));
     }
 
     public RankedGroupDto update(RankedGroupDto rankedGroupDto) {

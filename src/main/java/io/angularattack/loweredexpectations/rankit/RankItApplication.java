@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
 
+import static io.angularattack.loweredexpectations.rankit.services.RankedGroupService.START_SCORE;
+
 @SpringBootApplication
 public class RankItApplication {
 
@@ -25,26 +27,63 @@ public class RankItApplication {
                 .setName("Favorite Chili")
                 .setShortCode("HYZ456")
                 .addAllRankedItems(new RankedItem()
-                                .setName("Jim's 5 alarm chili").setScore(1500),
+                                .setName("Jim's 5 alarm chili")
+                                .setScore(START_SCORE),
                         new RankedItem()
-                                .setName("Dalin's tomato sauce he calls chili").setScore(1500),
+                                .setName("Dalin's tomato sauce he calls chili")
+                                .setScore(START_SCORE),
                         new RankedItem()
-                                .setName("Marc's second place chili").setScore(1500),
+                                .setName("Marc's second place chili")
+                                .setScore(START_SCORE),
                         new RankedItem()
-                                .setName("Peng's says he is chili but I think he is just cold").setScore(1500))
+                                .setName("Peng says he is chili")
+                                .setScore(START_SCORE))
         ));
 
         printIt(rankedGroupRepository.save(new RankedGroup()
                 .setName("Coolest guy on the team")
                 .setShortCode("ABC123")
                 .addAllRankedItems(new RankedItem()
-                                .setName("Jim").setScore(1500),
+                                .setName("Jim")
+                                .setScore(START_SCORE),
                         new RankedItem()
-                                .setName("Dalin").setScore(1500),
+                                .setName("Dalin")
+                                .setScore(START_SCORE),
                         new RankedItem()
-                                .setName("Marc").setScore(1500),
+                                .setName("Marc")
+                                .setScore(START_SCORE),
                         new RankedItem()
-                                .setName("Peng").setScore(1500))
+                                .setName("Peng")
+                                .setScore(START_SCORE))
+        ));
+
+        printIt(rankedGroupRepository.save(new RankedGroup()
+                .setName("Favorite Color")
+                .setShortCode("ABC12Z")
+                .addAllRankedItems(new RankedItem()
+                                .setName("Blue")
+                                .setScore(START_SCORE),
+                        new RankedItem()
+                                .setName("Red")
+                                .setScore(START_SCORE),
+                        new RankedItem()
+                                .setName("Green")
+                                .setScore(START_SCORE),
+                        new RankedItem()
+                                .setName("Yellow")
+                                .setScore(START_SCORE),
+                        new RankedItem()
+                                .setName("Pink")
+                                .setScore(START_SCORE),
+                        new RankedItem()
+                                .setName("Orange")
+                                .setScore(START_SCORE),
+                        new RankedItem()
+                                .setName("Grey")
+                                .setScore(START_SCORE),
+                        new RankedItem()
+                                .setName("Brown")
+                                .setScore(START_SCORE)))
         ));
     }
 
