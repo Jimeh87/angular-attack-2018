@@ -4,4 +4,9 @@
 
 .spacer {
     flex: 1 1 auto;
+    text-align: right;
+}
+
+.red-icon {
+    color: red;
 }
