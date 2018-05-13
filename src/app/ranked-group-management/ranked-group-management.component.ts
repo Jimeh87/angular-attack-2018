@@ -1,12 +1,14 @@
-import {ChangeDetectorRef, Component, OnInit, NgZone, Input} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import { Component, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {RankedGroupService} from "../services/ranked-group.service";
 import {RankedGroup} from "../models/ranked-group.model";
 import {Router} from "@angular/router";
 import {HttpClient} from '@angular/common/http';
-import {FileUploader, FileUploaderOptions, ParsedResponseHeaders} from 'ng2-file-upload';
 import {Cloudinary} from '@cloudinary/angular-5.x';
 import {RankedItem} from "../models/ranked-item.model";
+import {forkJoin} from "rxjs";
+import {Observable} from "rxjs/internal/Observable";
+import {Subscription} from "rxjs/internal/Subscription";
 
 @Component({
     selector: 'app-ranked-group-management',
@@ -15,30 +17,22 @@ import {RankedItem} from "../models/ranked-item.model";
 })
 export class RankedGroupManagementComponent implements OnInit {
 
-    @Input()
-    responses: Array<any>;
-
-    private title: string;
-
     formGroup: FormGroup;
     rankedItems: RankedItem[] = [];
-    private uploader: FileUploader;
+    images: File[] = []
+    combined: Subscription;
 
     constructor(
         private fb: FormBuilder,
         private rgservice: RankedGroupService,
         private router: Router,
         private cloudinary: Cloudinary,
-        private zone: NgZone,
         private http: HttpClient
     ) {
-        this.responses = [];
-        this.title = '';
     }
 
     ngOnInit() {
         this.createForm();
-        this.initilizeLoader();
     }
 
 
@@ -50,6 +44,7 @@ export class RankedGroupManagementComponent implements OnInit {
     }
 
     private createItemForm() {
+        this.images.push(null);
         return this.fb.group({
             name: '',
             image: File = null
@@ -57,35 +52,49 @@ export class RankedGroupManagementComponent implements OnInit {
     }
 
     saveGroup() {
-        const rankedGroup: RankedGroup = {
-            id: null,
-            name: this.formGroup.get("name").value,
-            rankedItems: (this.formGroup.get("rankedItems") as FormArray).controls.map((value: FormGroup, index: number) => {
-                const item : RankedItem = {
-                    id: null,
-                    name: value.get("name"),
-                    image: value.get("image")
-                };
-            })
-        };
+        const observables: Observable<any>[] = [];
+        this.images.forEach((value: File) => {
+            observables.push(this.uploadImage(value));
+        });
 
+        this.combined = forkJoin(
+            observables
+        ).subscribe((value) => {
+            console.log(value);
+            const rankedGroup: RankedGroup = {
+                id: null,
+                name: this.formGroup.get("name").value,
+                rankedItems: value.map( (httpResponse: any, index: number) => {
+                    const itemName = (this.formGroup.get("rankedItems") as FormArray).controls[index].get("name").value;
+                    const publicId: string = httpResponse.public_id;
+                    const rankedItem: RankedItem = {
+                        id: null,
+                        name: itemName,
+                        image: publicId
+                    };
+                    return rankedItem;
+                }),
+            };
+            this.rgservice.save(rankedGroup).subscribe(() => {
+                this.router.navigate(['/'])
+            });
 
+        });
     }
 
-    uploadImage(event: any) {
-        const fileItem = <File>event.target.files[0];
+    uploadImage(fileItem: File): Observable<any> {
+        console.log(fileItem);
+        if (fileItem === null) {
+            return new Observable(null);
+        }
         const form = new FormData();
         form.append('upload_preset', this.cloudinary.config().upload_preset);
         form.append('folder', 'rankit');
         // Add file to upload
         form.append('file', fileItem);
 
-        this.http.post(`https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/upload`, form)
-            .subscribe(res => {
-                console.log(res);
-            });
+        return this.http.post(`https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/upload`, form);
     }
-
 
     addItem() {
         const items = this.formGroup.get('rankedItems') as FormArray;
@@ -95,6 +104,13 @@ export class RankedGroupManagementComponent implements OnInit {
     removeItem(index: number) {
         const items = this.formGroup.get('rankedItems') as FormArray;
         items.removeAt(index);
+        this.images.splice(index, 1);
     }
 
+    onFileChange(event, index: number) {
+        if (event.target.files && event.target.files.length) {
+            const image = event.target.files[0];
+            this.images[index] = image;
+        }
+    }
 }

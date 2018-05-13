@@ -61,7 +61,8 @@ public class RankedGroupService {
     private RankedItemDto toRankedItemDto(RankedItem rankedItem) {
         return new RankedItemDto()
                 .setId(rankedItem.getId())
-                .setName(rankedItem.getName());
+                .setName(rankedItem.getName())
+                .setImage(rankedItem.getImage());
     }
 
     private RankedGroup toRankedGroup(RankedGroupDto rankedGroupDto) {
@@ -78,7 +79,9 @@ public class RankedGroupService {
     private RankedItem toRankedItem(RankedItemDto rankedItemDto) {
         return new RankedItem()
                 .setId(rankedItemDto.getId())
-                .setName(rankedItemDto.getName());
+                .setName(rankedItemDto.getName())
+                .setImage(rankedItemDto.getImage());
+
     }
 
 }

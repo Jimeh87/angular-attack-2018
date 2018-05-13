@@ -10,4 +10,5 @@ import java.util.UUID;
 public class RankedItemDto {
     private UUID id;
     private String name;
+    private String image;
 }
