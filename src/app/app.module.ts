@@ -2,6 +2,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
+import { Cloudinary } from 'cloudinary-core/cloudinary-core-shrinkwrap'';
+import { CloudinaryConfiguration, CloudinaryModule} from '@cloudinary/angular-5.x';
 import {AppComponent} from './app.component';
 import {HelloWorldService} from "./services/hello-world.service";
 import {HttpClientModule} from "@angular/common/http";
@@ -24,6 +26,14 @@ const appRoutes: Routes = [
     {path: '', component: HelloWorldComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
+
+const cloudConfig = {
+    cloud_name: 'loweredexpectations'
+};
+
+const cloudinaryLib = {
+    Cloudinary: Cloudinary
+};
 
 @NgModule({
     declarations: [
