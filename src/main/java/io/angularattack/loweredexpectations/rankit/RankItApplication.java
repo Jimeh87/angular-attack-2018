@@ -83,7 +83,7 @@ public class RankItApplication {
                                 .setScore(START_SCORE),
                         new RankedItem()
                                 .setName("Brown")
-                                .setScore(START_SCORE)))
+                                .setScore(START_SCORE))
         ));
     }
 

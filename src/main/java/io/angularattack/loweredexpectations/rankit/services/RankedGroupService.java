@@ -55,6 +55,7 @@ public class RankedGroupService {
                 .setShortCode(RandomStringUtils.random(8, "0123456789abcdefg"));
         rankedGroup.getRankedItems()
                 .forEach(i -> i.setScore(START_SCORE));
+        return rankedGroup;
     }
 
     public RankedGroupDto update(RankedGroupDto rankedGroupDto) {
