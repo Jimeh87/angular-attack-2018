@@ -53,4 +53,8 @@ export class RankedGroupManagementComponent implements OnInit {
         items.removeAt(index);
     }
 
+    getRankedItems() : FormArray {
+        return (this.formGroup.get('rankedItems') as FormArray);
+    }
+
 }

@@ -98,7 +98,7 @@
                             <outputDirectory>${basedir}/target/classes/static/</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${basedir}/dist</directory>
+                                    <directory>${basedir}/dist/loweredexpectations</directory>
                                 </resource>
                             </resources>
                         </configuration>
