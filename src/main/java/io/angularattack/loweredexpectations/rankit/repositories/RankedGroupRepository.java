@@ -8,5 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface RankedGroupRepository extends JpaRepository<RankedGroup, UUID> {
-
+	public RankedGroup findByShortCode(String shortCode);
 }

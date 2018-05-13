@@ -24,6 +24,9 @@ public class RankedGroup {
     @Column(name = "ID")
     private UUID id;
 
+    @Column(name = "SHORT_CODE", unique=true)
+    private String shortCode;
+
     @Column(name = "NAME")
     private String name;
 

@@ -10,6 +10,7 @@ import java.util.UUID;
 @Data
 @Accessors(chain = true)
 public class RankedGroupDto {
+	private String shortCode;
     private UUID id;
     private String name;
     private List<RankedItemDto> rankedItems = new ArrayList<>();
