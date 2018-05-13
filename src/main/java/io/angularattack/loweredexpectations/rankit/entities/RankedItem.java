@@ -27,6 +27,9 @@ public class RankedItem {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name= "SCORE")
+    private Integer score;
+
     @PrePersist
     public void prePersist() {
         id = UUID.randomUUID();

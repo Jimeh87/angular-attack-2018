@@ -26,26 +26,26 @@ public class RankItApplication {
                 .setName("Favorite Chili")
                 .setShortCode("HYZ456")
                 .addAllRankedItems(new RankedItem()
-                                .setName("Jim's 5 alarm chili"),
+                                .setName("Jim's 5 alarm chili").setScore(1500),
                         new RankedItem()
-                                .setName("Dalin's tomato sauce he calls chili"),
+                                .setName("Dalin's tomato sauce he calls chili").setScore(1500),
                         new RankedItem()
-                                .setName("Marc's second place chili"),
+                                .setName("Marc's second place chili").setScore(1500),
                         new RankedItem()
-                                .setName("Peng's says he is chili but I think he is just cold"))
+                                .setName("Peng's says he is chili but I think he is just cold").setScore(1500))
         ));
 
         printIt(rankedGroupRepository.save(new RankedGroup()
                 .setName("Coolest guy on the team")
                 .setShortCode("ABC123")
                 .addAllRankedItems(new RankedItem()
-                                .setName("Jim"),
+                                .setName("Jim").setScore(1500),
                         new RankedItem()
-                                .setName("Dalin"),
+                                .setName("Dalin").setScore(1500),
                         new RankedItem()
-                                .setName("Marc"),
+                                .setName("Marc").setScore(1500),
                         new RankedItem()
-                                .setName("Peng"))
+                                .setName("Peng").setScore(1500))
         ));
     }
 

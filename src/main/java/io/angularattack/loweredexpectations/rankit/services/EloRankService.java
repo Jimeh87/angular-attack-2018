@@ -30,18 +30,18 @@ public class EloRankService {
     }
 
     private double calculateItemAMultiplier(MatchResultEnum matchResult) {
-        if (matchResult == MatchResultEnum.WINNER_A) {
+        if (matchResult == MatchResultEnum.OptionA) {
             return WIN;
-        } else if (matchResult == MatchResultEnum.DRAW) {
+        } else if (matchResult == MatchResultEnum.Draw) {
             return DRAW;
         }
         return LOSS;
     }
 
     private double calculateItemBMultiplier(MatchResultEnum matchResult) {
-        if (matchResult == MatchResultEnum.WINNER_B) {
+        if (matchResult == MatchResultEnum.OptionB) {
             return WIN;
-        } else if (matchResult == MatchResultEnum.DRAW) {
+        } else if (matchResult == MatchResultEnum.Draw) {
             return DRAW;
         }
         return LOSS;
