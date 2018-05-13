@@ -1,34 +1,25 @@
-<section class="hero is-dark">
-    <div class="hero-body">
-        <div class="container">
-            <h1 class="title">
-                Ranked Group Management
-            </h1>
-            <h2 class="subtitle">
-                Add Group
-            </h2>
-        </div>
-    </div>
-</section>
-
-<div class="container" [formGroup]="formGroup">
-
-    <div class="field">
-        <mat-form-field>
-            <input matInput type="text" placeholder="Group name" formControlName="name">
-        </mat-form-field>
-    </div>
-
-    <div formArrayName="rankedItems" class="notification"
-         *ngFor="let item of getRankedItems().controls; let i = index">
-        <div class="field-body" [formGroupName]="i">
+<mat-card>
+    <mat-card-title>
+        Add Ranking list
+    </mat-card-title>
+    <mat-card-content>
+        <div [formGroup]="formGroup">
             <mat-form-field>
-                <input matInput type="text" placeholder="Item name" formControlName="name">
+                <input matInput type="text" placeholder="Ranking List Name" formControlName="name">
             </mat-form-field>
-            <button mat-button color="warn" (click)="removeItem(i)">Delete Item</button>
-        </div>
-    </div>
-    <button mat-raised-button (click)="addItem()">Add Item</button>
-    <button mat-raised-button (click)="saveGroup()">Save Group</button>
+            <div formArrayName="rankedItems" *ngFor="let item of getRankedItems().controls; let i = index">
+                <div [formGroupName]="i">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Item Name" formControlName="name">
+                    </mat-form-field>
+                    <button mat-button color="warn" (click)="removeItem(i)">Delete Item</button>
+                </div>
+            </div>
+            <button mat-raised-button (click)="addItem()">Add Item</button>
+            <br/>
+            <br/>
+            <button mat-raised-button color="primary" (click)="saveGroup()">Save Group</button>
 
-</div>
+        </div>
+    </mat-card-content>
+</mat-card>
