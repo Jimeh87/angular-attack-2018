@@ -1,4 +1,4 @@
-interface RankedItem {
+export interface RankedItem {
     id: string,
     name: string,
     score: number

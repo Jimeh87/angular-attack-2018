@@ -10,7 +10,11 @@
                 <mat-icon>assessment</mat-icon>
                 <span>Rank it</span>
             </button>
+            <mat-card-subtitle>
+                <a [routerLink]="[toUrl(group.shortCode)]">{{ toUrl(group.shortCode) }}</a>
+            </mat-card-subtitle>
         </mat-card-title>
+
         <mat-card-content class="table-container mat-elevation-z8">
             <table mat-table #table [dataSource]=group.rankedItems>
                 <!-- Rank Column -->

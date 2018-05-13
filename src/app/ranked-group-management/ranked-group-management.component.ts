@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validator, Validators} from "@angular/forms";
+import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RankedGroupService} from "../services/ranked-group.service";
 import {RankedGroup} from "../models/ranked-group.model";
 import {Router} from "@angular/router";
