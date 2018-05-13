@@ -1,4 +1,5 @@
 interface RankedItem {
     id: string,
-    name: string
+    name: string,
+    score: number
 }

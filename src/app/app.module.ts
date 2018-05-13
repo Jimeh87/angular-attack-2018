@@ -13,21 +13,23 @@ import {RankedGroupComponent} from './ranked-group/ranked-group.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
     MatButtonModule,
-    MatCardModule, MatDividerModule,
+    MatCardModule,
+    MatDividerModule,
     MatGridListModule,
     MatIconModule,
-    MatInputModule, MatTableModule,
+    MatInputModule,
+    MatTableModule,
     MatToolbarModule
 } from "@angular/material";
 import {CompareComponent} from './compare/compare.component';
-import { HomeComponent } from './home/home.component';
+import {HomeComponent} from './home/home.component';
 
 const appRoutes: Routes = [
     {path: 'manage-ranked-group/:id', component: RankedGroupManagementComponent},
     {path: 'compare/:rankedGroupId', component: CompareComponent},
     {path: 'ranked-group', component: RankedGroupComponent},
     {path: 'manage-ranked-group', component: RankedGroupManagementComponent},
-    {path: '', component: HelloWorldComponent},
+    {path: '', component: HomeComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
 
