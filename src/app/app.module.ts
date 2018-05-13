@@ -28,7 +28,7 @@ const appRoutes: Routes = [
 ];
 
 const cloudConfig = {
-    cloud_name: 'loweredexpectations'
+    cloud_name: 'loweredexpectations', upload_preset: 'e6cxednp'
 };
 
 const cloudinaryLib = {
