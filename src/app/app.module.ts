@@ -20,6 +20,7 @@ import {
     MatToolbarModule
 } from "@angular/material";
 import {CompareComponent} from './compare/compare.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
     {path: 'manage-ranked-group/:id', component: RankedGroupManagementComponent},
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
         RankedGroupManagementComponent,
         PageNotFoundComponent,
         CompareComponent,
-        RankedGroupComponent
+        RankedGroupComponent,
+        HomeComponent
     ],
     imports: [
         BrowserModule,
