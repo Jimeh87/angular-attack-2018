@@ -24,6 +24,7 @@ public class RankItApplication {
     public void postConstruct() {
         printIt(rankedGroupRepository.save(new RankedGroup()
                 .setName("Favorite Chili")
+                .setShortCode("HYZ456")
                 .addAllRankedItems(new RankedItem()
                                 .setName("Jim's 5 alarm chili"),
                         new RankedItem()
@@ -36,6 +37,7 @@ public class RankItApplication {
 
         printIt(rankedGroupRepository.save(new RankedGroup()
                 .setName("Coolest guy on the team")
+                .setShortCode("ABC123")
                 .addAllRankedItems(new RankedItem()
                                 .setName("Jim"),
                         new RankedItem()
