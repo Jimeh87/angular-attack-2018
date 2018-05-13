@@ -17,13 +17,11 @@ export class RankedGroupComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.rgService.findAll().subscribe(value => {
-            this.rankedGroups = value;
+        this.rgService.findAll().subscribe((rankedGroups: RankedGroup[]) => {
+            rankedGroups.forEach(g => g.rankedItems = g.rankedItems.sort((a, b) => b.score - a.score));
+            this.rankedGroups = rankedGroups;
             console.log("Saved group successful: " + JSON.stringify(this.rankedGroups));
         });
     }
 
-    addGroup() {
-        this.router.navigate(['/manage-ranked-group']);
-    }
 }

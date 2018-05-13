@@ -1,10 +1,16 @@
 <mat-card>
     <mat-card-title>
         <mat-icon>trending_up</mat-icon>
-        Active rankings
+        Trending Rankings
     </mat-card-title>
     <div *ngFor="let group of rankedGroups">
-        <mat-card-title style="margin-top: 2rem;">{{group.name}}</mat-card-title>
+        <mat-card-title style="margin-top: 2rem;">
+            {{group.name}}
+            <button mat-raised-button color="accent" [routerLink]="['/compare', group.id]">
+                <mat-icon>assessment</mat-icon>
+                <span>Rank it</span>
+            </button>
+        </mat-card-title>
         <mat-card-content class="table-container mat-elevation-z8">
             <table mat-table #table [dataSource]=group.rankedItems>
                 <!-- Rank Column -->
