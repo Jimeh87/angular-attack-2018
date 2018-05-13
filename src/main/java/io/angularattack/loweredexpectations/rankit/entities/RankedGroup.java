@@ -6,6 +6,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +24,9 @@ public class RankedGroup {
     @Column(name = "ID")
     private UUID id;
 
+    @Column(name = "SHORT_CODE", unique=true)
+    private String shortCode;
+
     @Column(name = "NAME")
     private String name;
 
@@ -34,6 +38,12 @@ public class RankedGroup {
     @PrePersist
     public void prePersist() {
         id = UUID.randomUUID();
+    }
+
+    @Transient
+    public RankedGroup addAllRankedItems(RankedItem... rankedItems) {
+        this.rankedItems.addAll(Arrays.asList(rankedItems));
+        return this;
     }
 
 }

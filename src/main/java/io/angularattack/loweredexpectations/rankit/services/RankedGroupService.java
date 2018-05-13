@@ -25,6 +25,12 @@ public class RankedGroupService {
                 .map(this::toRankedGroupDto)
                 .collect(Collectors.toList());
     }
+    
+    public RankedGroupDto getByShortCode(String shortCode) {
+        return Optional.of(rankedGroupRepository.findByShortCode(shortCode))
+                .map(this::toRankedGroupDto)
+                .get();
+    }
 
     public RankedGroupDto get(UUID id) {
         return Optional.of(rankedGroupRepository.getOne(id))
@@ -52,6 +58,7 @@ public class RankedGroupService {
         return new RankedGroupDto()
                 .setId(rankedGroup.getId())
                 .setName(rankedGroup.getName())
+                .setShortCode(rankedGroup.getShortCode())
                 .setRankedItems(rankedGroup.getRankedItems()
                         .stream()
                         .map(this::toRankedItemDto)
@@ -61,13 +68,15 @@ public class RankedGroupService {
     private RankedItemDto toRankedItemDto(RankedItem rankedItem) {
         return new RankedItemDto()
                 .setId(rankedItem.getId())
-                .setName(rankedItem.getName());
+                .setName(rankedItem.getName())
+                .setScore(rankedItem.getScore());
     }
 
     private RankedGroup toRankedGroup(RankedGroupDto rankedGroupDto) {
         RankedGroup rankedGroup = new RankedGroup()
                 .setId(rankedGroupDto.getId())
-                .setName(rankedGroupDto.getName());
+                .setName(rankedGroupDto.getName())
+                .setShortCode(rankedGroupDto.getShortCode());
         rankedGroup.getRankedItems().addAll(rankedGroupDto.getRankedItems()
                 .stream()
                 .map(this::toRankedItem)
@@ -78,7 +87,8 @@ public class RankedGroupService {
     private RankedItem toRankedItem(RankedItemDto rankedItemDto) {
         return new RankedItem()
                 .setId(rankedItemDto.getId())
-                .setName(rankedItemDto.getName());
+                .setName(rankedItemDto.getName())
+                .setScore(rankedItemDto.getScore());
     }
 
 }

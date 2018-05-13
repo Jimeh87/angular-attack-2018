@@ -11,7 +11,7 @@ import {Subscription} from "rxjs/index";
 export class HelloWorldComponent implements OnInit, OnDestroy {
 
   constructor(private helloWorldService: HelloWorldService) { }
-  private hello: Hello;
+  hello: Hello;
   private helloSubscription: Subscription = Subscription.EMPTY;
 
 
