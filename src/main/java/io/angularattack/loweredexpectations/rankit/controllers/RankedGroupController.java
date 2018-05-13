@@ -34,8 +34,7 @@ public class RankedGroupController {
 
     @PutMapping("/{id}")
     public RankedGroupDto update(@PathVariable UUID id, @RequestBody RankedGroupDto rankedGroupDto) {
-        rankedGroupDto.setId(id);
-        return rankedGroupService.update(rankedGroupDto);
+        return rankedGroupService.update(rankedGroupDto.setId(id));
     }
 
     @DeleteMapping("/{id}")

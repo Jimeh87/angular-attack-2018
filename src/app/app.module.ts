@@ -12,11 +12,13 @@ import {RankedItemManagementComponent} from './ranked-item-management/ranked-ite
 import {RankedGroupService} from "./services/ranked-group.service";
 import {ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatCardModule} from "@angular/material";
+import {MatCardModule, MatGridListModule} from "@angular/material";
+import {CompareComponent} from './compare/compare.component';
 
 const appRoutes: Routes = [
     {path: 'manage-ranked-group/:id', component: RankedGroupManagementComponent},
     {path: 'manage-ranked-item/:id', component: RankedItemManagementComponent},
+    {path: 'compare/:id', component: CompareComponent},
     {path: '', component: HelloWorldComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
         HelloWorldComponent,
         RankedGroupManagementComponent,
         PageNotFoundComponent,
-        RankedItemManagementComponent
+        RankedItemManagementComponent,
+        CompareComponent
     ],
     imports: [
         BrowserModule,
@@ -38,7 +41,8 @@ const appRoutes: Routes = [
             {enableTracing: true} // <-- debugging purposes only
         ),
         BrowserAnimationsModule,
-        MatCardModule
+        MatCardModule,
+        MatGridListModule
     ],
     providers: [HelloWorldService, RankedGroupService],
     bootstrap: [AppComponent]
