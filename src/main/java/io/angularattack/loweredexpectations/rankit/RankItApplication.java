@@ -26,22 +26,34 @@ public class RankItApplication {
 
     @PostConstruct
     public void postConstruct() {
-//        printIt(rankedGroupRepository.save(new RankedGroup()
-//                .setName("Favorite Chili")
-//                .setShortCode(RankedGroupService.generateShortCode())
-//                .addAllRankedItems(new RankedItem()
-//                                .setName("Jim's 5 alarm chili")
-//                                .setScore(START_SCORE),
-//                        new RankedItem()
-//                                .setName("Dalin's tomato sauce he calls chili")
-//                                .setScore(START_SCORE),
-//                        new RankedItem()
-//                                .setName("Marc's second place chili")
-//                                .setScore(START_SCORE),
-//                        new RankedItem()
-//                                .setName("Peng says he is chili")
-//                                .setScore(START_SCORE))
-//        ));
+        printIt(rankedGroupRepository.save(new RankedGroup()
+                .setName("Favorite Chili")
+                .setShortCode(RankedGroupService.generateShortCode())
+                .addAllRankedItems(new RankedItem()
+                                .setName("Peach")
+                                .setScore(START_SCORE)
+                                .setImage("rankit/TOMRA_exotic-fruit_800x500"),
+                        new RankedItem()
+                                .setName("Kiwi")
+                                .setScore(START_SCORE)
+                                .setImage("rankit/1200px-kiwi_actinidia_chinensis_1_luc_viatour"),
+                        new RankedItem()
+                                .setName("Pomegranate")
+                                .setScore(START_SCORE)
+                                .setImage("rankit/50429"),
+                        new RankedItem()
+                                .setName("Strawberry")
+                                .setScore(START_SCORE)
+                                .setImage("rankit/220px-FraiseFruitPhoto"),
+                        new RankedItem()
+                                .setName("Apple")
+                                .setScore(START_SCORE)
+                                .setImage("rankit/Apple_A-Z_Fruit1"),
+                        new RankedItem()
+                                .setName("Banana")
+                                .setScore(START_SCORE)
+                                .setImage("rankit/banana"))
+        ));
 //
 //        printIt(rankedGroupRepository.save(new RankedGroup()
 //                .setName("Coolest guy on the team")
