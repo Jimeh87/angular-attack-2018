@@ -23,8 +23,10 @@ import {
 } from "@angular/material";
 import {CompareComponent} from './compare/compare.component';
 import {HomeComponent} from './home/home.component';
+import { EasyUrlComponent } from './easy-url/easy-url.component';
 
 const appRoutes: Routes = [
+    {path: 'r/:shortId', component: EasyUrlComponent},
     {path: 'manage-ranked-group/:id', component: RankedGroupManagementComponent},
     {path: 'compare/:rankedGroupId', component: CompareComponent},
     {path: 'ranked-group', component: RankedGroupComponent},
@@ -41,7 +43,8 @@ const appRoutes: Routes = [
         PageNotFoundComponent,
         CompareComponent,
         RankedGroupComponent,
-        HomeComponent
+        HomeComponent,
+        EasyUrlComponent
     ],
     imports: [
         BrowserModule,
