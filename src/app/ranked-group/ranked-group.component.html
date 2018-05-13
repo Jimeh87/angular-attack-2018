@@ -9,25 +9,40 @@
 </section>
 
 <div>
-    <div>
-        <div *ngFor="let group of rankedGroups">
-            <div class="field">
-                <label class="label">Group Name</label>
-                <div>
-                    {{group.name}}
-                </div>
-            </div>
-            <div *ngFor="let item of group.rankedItems">
-                <div class="field">
-                    <label class="label">item</label>
-                    <div>
-                        {{item.name}}
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div *ngFor="let group of rankedGroups">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>{{group.name}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="table-container mat-elevation-z8">
+                <table mat-table #table [dataSource]=group.rankedItems>
+                    <!-- Rank Column -->
+                    <ng-container matColumnDef="rank">
+                        <th mat-header-cell *matHeaderCellDef> Rank</th>
+                        <td mat-cell *matCellDef="let i = index"> {{i+1}}</td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Name</th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+                    </ng-container>
+
+                    <!-- Image Column -->
+                    <ng-container matColumnDef="image">
+                        <th mat-header-cell *matHeaderCellDef> Image</th>
+                        <td mat-cell *matCellDef="let element"> {{element.image}}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </mat-card-content>
+        </mat-card>
     </div>
-    <button class="button is-info is-pulled-right" (click)="addGroup()">Add Group</button>
+    <br/>
+    <button mat-raised-button (click)="addGroup()">Add Group</button>
 </div>
+
 
 

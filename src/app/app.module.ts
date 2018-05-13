@@ -10,9 +10,13 @@ import {RankedGroupManagementComponent} from './ranked-group-management/ranked-g
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {RankedGroupService} from "./services/ranked-group.service";
 import {ReactiveFormsModule} from "@angular/forms";
-import { RankedGroupComponent } from './ranked-group/ranked-group.component';
+import {RankedGroupComponent} from './ranked-group/ranked-group.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatCardModule} from "@angular/material";
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
+import {MatDividerModule} from '@angular/material/divider';
 
 const appRoutes: Routes = [
     {path: 'ranked-group', component: RankedGroupComponent},
@@ -38,7 +42,11 @@ const appRoutes: Routes = [
             {enableTracing: true} // <-- debugging purposes only
         ),
         BrowserAnimationsModule,
-        MatCardModule
+        MatCardModule,
+        MatInputModule,
+        MatButtonModule,
+        MatTableModule,
+        MatDividerModule
     ],
     providers: [HelloWorldService, RankedGroupService],
     bootstrap: [AppComponent]

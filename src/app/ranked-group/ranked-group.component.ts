@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 export class RankedGroupComponent implements OnInit {
 
     rankedGroups: Array<RankedGroup> = [];
+    displayedColumns = ['rank', 'name', 'image'];
 
     constructor(private rgService: RankedGroupService, private router: Router) {
     }
