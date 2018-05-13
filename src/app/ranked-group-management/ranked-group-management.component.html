@@ -20,7 +20,7 @@
     </div>
 
     <div formArrayName="rankedItems" class="notification"
-         *ngFor="let item of formGroup.get('rankedItems').controls; let i = index">
+         *ngFor="let item of getRankedItems().controls; let i = index">
         <div class="field-body" [formGroupName]="i">
             <mat-form-field>
                 <input matInput type="text" placeholder="Item name" formControlName="name">

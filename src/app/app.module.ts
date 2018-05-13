@@ -40,7 +40,7 @@ const appRoutes: Routes = [
         BrowserModule,
         HttpClientModule,
         ReactiveFormsModule,
-        RouterModule.forRoot(appRoutes),
+        RouterModule.forRoot(appRoutes, {useHash: true}),
         BrowserAnimationsModule,
         MatCardModule,
         MatGridListModule,
