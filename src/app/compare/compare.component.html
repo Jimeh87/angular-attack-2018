@@ -10,13 +10,17 @@
 <div *ngIf="match" @flyInOut>
     <div class="row">
         <div class="col-12 col-md-6">
-            <mat-card class="compare-item" (click)="matchAWon()">
-                <mat-card-title>{{ match.itemA.name }}</mat-card-title>
+            <mat-card class="compare-item" (click)="matchAWon()" style="height: 60vh">
+                <mat-card-title style="padding-bottom: 1rem;">{{ match.itemA.name }}</mat-card-title>
+                <cl-image mat-card-image *ngIf="match.itemA.image" [public-id]="match.itemA.image"></cl-image>
+                <img mat-card-image *ngIf="!match.itemA.image" src="assets/images/default-question-mark-100.png">
             </mat-card>
         </div>
         <div class="col-12 col-md-6">
-            <mat-card class="compare-item" (click)="matchBWon()">
-                <mat-card-title>{{ match.itemB.name }}</mat-card-title>
+            <mat-card class="compare-item" (click)="matchBWon()" style="height: 60vh">
+                <mat-card-title style="padding-bottom: 1rem;">{{ match.itemB.name }}</mat-card-title>
+                <cl-image mat-card-image *ngIf="match.itemB.image" [public-id]="match.itemB.image"></cl-image>
+                <img mat-card-image *ngIf="!match.itemB.image" src="assets/images/default-question-mark-100.png">
             </mat-card>
         </div>
     </div>
