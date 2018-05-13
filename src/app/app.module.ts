@@ -1,24 +1,28 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-
 import {AppComponent} from './app.component';
 import {HelloWorldService} from "./services/hello-world.service";
 import {HttpClientModule} from "@angular/common/http";
 import {HelloWorldComponent} from './hello-world/hello-world.component';
 import {RankedGroupManagementComponent} from './ranked-group-management/ranked-group-management.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {RankedItemManagementComponent} from './ranked-item-management/ranked-item-management.component';
 import {RankedGroupService} from "./services/ranked-group.service";
 import {ReactiveFormsModule} from "@angular/forms";
+import {RankedGroupComponent} from './ranked-group/ranked-group.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatCardModule, MatGridListModule} from "@angular/material";
 import {CompareComponent} from './compare/compare.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
+import {MatDividerModule} from '@angular/material/divider';
 
 const appRoutes: Routes = [
     {path: 'manage-ranked-group/:id', component: RankedGroupManagementComponent},
-    {path: 'manage-ranked-item/:id', component: RankedItemManagementComponent},
     {path: 'compare/:id', component: CompareComponent},
+    {path: 'ranked-group', component: RankedGroupComponent},
+    {path: 'manage-ranked-group', component: RankedGroupManagementComponent},
     {path: '', component: HelloWorldComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
@@ -29,20 +33,22 @@ const appRoutes: Routes = [
         HelloWorldComponent,
         RankedGroupManagementComponent,
         PageNotFoundComponent,
-        RankedItemManagementComponent,
-        CompareComponent
+        CompareComponent,
+        RankedGroupComponent
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         ReactiveFormsModule,
-        RouterModule.forRoot(
-            appRoutes,
-            {enableTracing: true} // <-- debugging purposes only
-        ),
+        RouterModule.forRoot(appRoutes),
         BrowserAnimationsModule,
         MatCardModule,
-        MatGridListModule
+        MatGridListModule,
+        MatCardModule,
+        MatInputModule,
+        MatButtonModule,
+        MatTableModule,
+        MatDividerModule
     ],
     providers: [HelloWorldService, RankedGroupService],
     bootstrap: [AppComponent]

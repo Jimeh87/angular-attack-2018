@@ -14,29 +14,21 @@
 <div class="container" [formGroup]="formGroup">
 
     <div class="field">
-        <label class="label">Group Name</label>
-        <div class="control">
-            <input class="input" type="text" formControlName="groupName"/>
-        </div>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Group name" formControlName="name">
+        </mat-form-field>
     </div>
 
-    <div >
-        <div formArrayName="items" class="notification" *ngFor="let item of formGroup.get('items').controls; let i = index">
-            <div class="field-body" [formGroupName]="i">
-                <div class="field">
-                    <label class="label">item</label>
-                    <input class="input" type="text" formControlName="itemName"/>
-                </div>
-            </div>
-            <button class="delete" (click)="removeItem(i)">
-                <span>Delete Item</span>
-            </button>
+    <div formArrayName="rankedItems" class="notification"
+         *ngFor="let item of formGroup.get('rankedItems').controls; let i = index">
+        <div class="field-body" [formGroupName]="i">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Item name" formControlName="name">
+            </mat-form-field>
+            <button mat-button color="warn" (click)="removeItem(i)">Delete Item</button>
         </div>
-        <button class="button is-dark" (click)="addItem()">
-            <i class="fas fa-plus-circle"></i>&nbsp;
-            <span>Add Item</span>
-        </button>
     </div>
-    <button class="button is-info is-pulled-right" (click)="submitForm()">Save Group </button>
+    <button mat-raised-button (click)="addItem()">Add Item</button>
+    <button mat-raised-button (click)="saveGroup()">Save Group</button>
 
 </div>
