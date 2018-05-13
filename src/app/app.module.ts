@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import { Cloudinary } from 'cloudinary-core/cloudinary-core-shrinkwrap'';
+import { Cloudinary } from 'cloudinary-core/cloudinary-core-shrinkwrap';
 import { CloudinaryConfiguration, CloudinaryModule} from '@cloudinary/angular-5.x';
 import {AppComponent} from './app.component';
 import {HelloWorldService} from "./services/hello-world.service";
@@ -47,10 +47,8 @@ const cloudinaryLib = {
         BrowserModule,
         HttpClientModule,
         ReactiveFormsModule,
-        RouterModule.forRoot(
-            appRoutes,
-            {enableTracing: true} // <-- debugging purposes only
-        ),
+        RouterModule.forRoot( appRoutes),
+        CloudinaryModule.forRoot(cloudinaryLib, cloudConfig as CloudinaryConfiguration),
         BrowserAnimationsModule,
         MatCardModule,
         MatInputModule,
