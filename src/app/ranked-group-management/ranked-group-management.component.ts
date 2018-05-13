@@ -7,8 +7,9 @@ import {HttpClient} from '@angular/common/http';
 import {Cloudinary} from '@cloudinary/angular-5.x';
 import {RankedItem} from "../models/ranked-item.model";
 import {forkJoin} from "rxjs";
-import {Observable} from "rxjs/internal/Observable";
+import {Observable} from "rxjs/index";
 import {Subscription} from "rxjs/internal/Subscription";
+import {of} from "rxjs/internal/observable/of";
 
 @Component({
     selector: 'app-ranked-group-management',
@@ -72,7 +73,7 @@ export class RankedGroupManagementComponent implements OnInit {
                 shortCode: null,
                 rankedItems: value.map((httpResponse: any, index: number) => {
                     const itemName = (this.formGroup.get("rankedItems") as FormArray).controls[index].get("name").value;
-                    const publicId: string = httpResponse.public_id;
+                    const publicId: string = httpResponse ? httpResponse.public_id : null;
                     const rankedItem: RankedItem = {
                         id: null,
                         name: itemName,
@@ -95,7 +96,7 @@ export class RankedGroupManagementComponent implements OnInit {
     uploadImage(fileItem: File): Observable<any> {
         console.log(fileItem);
         if (fileItem === null) {
-            return new Observable(null);
+            return  of(null);
         }
         const form = new FormData();
         form.append('upload_preset', this.cloudinary.config().upload_preset);
